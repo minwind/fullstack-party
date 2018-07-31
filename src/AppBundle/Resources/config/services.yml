@@ -1,0 +1,20 @@
+services:
+    github.client:
+        class: Github\Client
+    twig.extension.date:
+       class: Twig_Extensions_Extension_Date
+       tags:
+            - { name: twig.extension }
+    user_provider:
+        class: AppBundle\Security\UserProvider
+        arguments: ['@session', '@doctrine', '@service_container']
+
+#    user.repository:
+#        class: AppBundle\Repository\UserRepository
+#        factory: ['@doctrine.orm.entity_manager', getRepository]
+#        arguments: ['@doctrine.orm.entity_manager']
+
+    github.issues:
+        class: AppBundle\Services\GithubIssues
+        arguments: ['@session', '@github.client', '%github_client_secret%']
+        public: true

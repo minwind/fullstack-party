@@ -1,0 +1,65 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="list-box">
+            <div class="custom-radio-box">
+                {{ form_start(form) }}
+                    <div class="btn-group" id="{{ form.choiceField.vars.id }}" data-toggle="buttons">
+                        {% for child in form.choiceField.children %}
+                            <label class="btn{% if child.vars.checked %} active{% endif %}">
+                                <span class="octicon {% if child.vars.value == 'open' %}octicon-issue-opened{% else %}octicon-check{% endif %}"></span>
+                                <span>{% if child.vars.value == 'open' %}{{ openIssue }}{% else %}{{ closedIssue }}{% endif %}</span>
+                                {{ form_widget(child, {'radio_only': true}) }}
+                                {{ child.vars.label }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                    {{ form_widget(form.submit) }}
+                {{ form_end(form) }}
+            </div>
+            <div class="issues-container">
+            {% for issue in list %}
+                <div class="issue-box">
+                    <div class="row">
+                        <div class="col-md-10 col-sm-12 mx-auto issue-item-box">
+                            <div class="row">
+                                <div class="col-1"><span class="octicon {% if issue.state == 'open' %}octicon-issue-opened{% else %}octicon-check{% endif %}"></span></div>
+                                <div class="col-9">
+                                    <a class="title-link" href="{{ path('issue_view', {'repo':issue.repository, 'number':issue.number}) }}">
+                                        <h3>{{ issue.title }}</h3>
+                                    </a>
+                                    {% if issue.labels %}
+                                        {% for item in issue.labels %}
+                                            <span class="tag" style="background-color: #{{ item.color }};">{{ item.name|capitalize }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% set tweets_date=issue.updated_at|time_diff %}
+                                    <p class="description"># {{ issue.number }} {% if issue.state == 'open' %} opend {% else %} closed {% endif %} {{ tweets_date }}
+                                        <a href="">{{ issue.user.login }}</a>
+                                    </p>
+                                </div>
+                                <div class="col-2 text-right">
+                                    {% if issue.comments %}
+                                        <a href="{{ path('issue_view', {'repo':issue.repository, 'number':issue.number}) }}">
+                                            <span class="octicon octicon-comment"><span class="number">{{ issue.comments }}</span></span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="row">
+                <div class="pagination-box">
+                    {{ knp_pagination_render(list) }}
+                </div>
+            </div>
+        </div>
+        <div class="surfer-box">
+            <h1>Backend developer task</h1>
+        </div>
+    </div>
+{% endblock %}

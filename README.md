@@ -1,29 +1,14 @@
-# Great task for Great Fullstack Developer
+## Task for backend
 
-If you found this task it means we are looking for you!
+## Backend
 
-> Note: To clone this repository you will need [GIT-LFS](https://git-lfs.github.com/)
+1. Composer install
+2. php bin/console doctrine:database:create
+3. php bin/console doctrine:schema:update --force
+4. parameters.yml write <github_client_id> <github_client_secret>
 
-## Few simple steps
+## Frontend
 
-1. Fork this repo
-2. Do your best
-3. Prepare pull request and let us know that you are done
-
-## Few simple requirements
-
-- Design should be recreated as closely as possible.
-- Design must be responsive. Because we live in our smartphones and we will check with them for sure.
-- Use GitHub V3 REST API to receive data. [Docs here](https://developer.github.com/v3/)
-- Use popular PHP framework (SlimPHP, Lumen, Symfony, Laravel, Zend or any other)
-- Use AngularJS or ReactJS.
-- Use CSS preprocessor (SCSS preferred).
-- Browser support must be great. All modern browsers plus IE9 and above.
-- Use a Javascript task-runner. Gulp, Webpack or Grunt - it doesn't matter.
-- Do not commit the build, because we are building things on deployment.
-
-## Few tips
-
-- Structure! WE LOVE STRUCTURE!
-- Maybe You have an idea how it should interact with users? Do it! Its on you!
-- Have fun!
+5. npm install
+6. bower install
+7. gulp

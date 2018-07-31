@@ -1,0 +1,26 @@
+header {
+  box-shadow: 0 2px 0 0 rgba(230,230,230,1);
+  position: relative;
+  z-index: 1;
+  .header-box {
+    height: 110px;
+    padding: 0 50px;
+    @media(max-width: 768px) {
+      height: 60px;
+      padding: 0 15px;
+    }
+    .header-logo-box {
+      position: relative;
+      top: 46%;
+      transform: translateY(-50%);
+    }
+    a {
+      display: inline-block;
+      position: relative;
+      top: 46%;
+      transform: translateY(-50%);
+      color: #000;
+      margin-left: 20px
+    }
+  }
+}

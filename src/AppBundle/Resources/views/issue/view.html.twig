@@ -1,0 +1,55 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="view-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <a class="back-link" href="{{ app.request.headers.get('referer') }}"><img src="{{ asset('images/ico-back.png') }}" alt="photo">back to issues</a>
+                    </div>
+                </div>
+                <div class="issue-box">
+                    <div class="col issue-item-box">
+                        <div class="row">
+                            <div class="col">
+                                <h3>{{ issue.title }} <span># {{ issue.number }}</span></h3>
+                                <span class="tag {% if issue.state == 'open' %}opened{% else %}closed{% endif %}">
+                                    <span class="octicon {% if issue.state == 'open' %}octicon-issue-opened{% else %}octicon-check{% endif %}"></span>
+                                    {% if issue.state == 'open' %} opened {% else %} closed {% endif %}
+                                </span>
+                                {% set tweets_date=issue.updated_at|time_diff %}
+                                <p class="description"><a href="">{{ issue.user.login }}</a> {% if issue.state == 'open' %} opend {% else %} closed {% endif %}  {{ tweets_date }}
+                                    <span class="number">{{ issue.comments }} comment</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments">
+                {% if issue.comments_array is defined %}
+                    {% for comment in issue.comments_array%}
+                        <div class="comment-box">
+
+                                <div class="comment-item-image-box">
+                                    <div class="image-box rounded-circle">
+                                        <img src="{{ comment.user.avatar_url }}" alt="photo">
+                                    </div>
+                                </div>
+                                <div class="comment-item-box">
+                                    <div class="col comment-header">
+                                        {% set tweets_date=issue.updated_at|time_diff %}
+                                        <p class="description"><a href="{{ comment.user.html_url }}" target="_blank">{{ comment.user.login }}</a> comented {{ tweets_date }}</p>
+                                    </div>
+                                    <div class="col comment-body">
+                                        <p>{{ comment.body }}</p>
+                                    </div>
+                                </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

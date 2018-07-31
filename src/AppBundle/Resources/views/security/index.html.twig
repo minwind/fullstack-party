@@ -1,0 +1,13 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper" class="container-fluid">
+        <div class="login-box">
+            <img src="{{ asset('images/testio.png') }}" alt="photo">
+            {% for owner in hwi_oauth_resource_owners() %}
+                <a href="{{ hwi_oauth_login_url(owner) }}" class="btn btn-default big-button">login with github</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

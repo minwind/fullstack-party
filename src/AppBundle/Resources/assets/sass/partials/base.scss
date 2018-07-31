@@ -1,0 +1,132 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  .wrapper {
+    position: relative;
+    height: calc(100vh - 110px);
+    overflow: hidden;
+    @media (max-width: 768px) {
+      height: calc(100vh - 60px);
+    }
+  }
+}
+
+.btn-default {
+  display: block;
+  background-color: #9fd533;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  outline: none!important;
+  &:hover {
+    background-color: #86b300;
+    color: #fff;
+  }
+  &.big-button {
+    width: 370px;
+    height: 55px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+.octicon-issue-opened {
+  color: #28a745;
+}
+a {
+  color: #28a745;
+  & .octicon-comment {
+    color: #999;
+    font-weight: bold;
+    & .number {
+      margin-left: 5px;
+      font-weight: normal;
+    }
+  }
+  &:hover{
+    color: #28a745;
+    text-decoration: underline;
+  }
+}
+p {
+  margin: 5px 0;
+}
+.tag {
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+  margin-right: 10px;
+  &.opened {
+    background-color: #9fd533;
+  }
+  &.closed {
+    background-color: #000;
+  }
+  .octicon-issue-opened {
+    color: #fff;
+  }
+
+}
+.title-link {
+  color: #000;
+  &:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+  h3 {
+    display: inline;
+    font-size: 16px;
+  }
+}
+.back-link {
+  line-height: 5;
+  img {
+    margin-right: 10px;
+  }
+}
+.no-padding {
+  padding: 0;
+}
+.hidden {
+  display: none;
+}
+.custom-radio-box {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  .btn-group>.btn input[type=radio] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+    color: #7a7a7a;
+    background: transparent;
+
+  }
+  .btn-group {
+    .btn {
+      color: #7a7a7a;
+      border-radius: 0;
+      margin-bottom: 0;
+      &:hover {
+        border: 1px solid #99cc33;
+      }
+      &.active {
+        color: #000;
+        background: transparent;
+        &:hover {
+          border: 1px solid transparent;
+        }
+      }
+      &.active .octicon{
+        color: #000;
+      }
+      & .octicon {
+        color: #7a7a7a;
+      }
+    }
+  }
+}
